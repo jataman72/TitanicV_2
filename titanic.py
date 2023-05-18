@@ -15,13 +15,13 @@ st.set_page_config(page_title="TITANIC", layout="wide", page_icon="🚢")
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 #--------------------LEEMOS LOS DATAFRAMES----------------------------#
-#df = pd.read_csv(r"data/titanic.csv")
-#if "Unnamed: 0" in df:
-#   df = df.drop(columns = ['Unnamed: 0']) 
-#lse:
- #   pass
+df = pd.read_csv(r"data/titanic.csv")
+if "Unnamed: 0" in df:
+   df = df.drop(columns = ['Unnamed: 0']) 
+lse:
+    pass
     
-    df = df.drop(columns='Unnamed: 0', errors='ignore')
+    #df = df.drop(columns='Unnamed: 0', errors='ignore')
 
 
 df_limpio = pd.read_csv(r"data/titanic_limpio.csv")
