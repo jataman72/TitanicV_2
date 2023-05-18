@@ -1,0 +1,16 @@
+name: deploy to staging
+
+on: workflow_dispatch:
+
+jobs:
+  greeting:
+    runs-on: macos-10.15
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: "Message that will be displayed on users' first issue"
+        pr-message: "Message that will be displayed on users' first pull request"
