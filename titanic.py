@@ -15,17 +15,28 @@ st.set_page_config(page_title="TITANIC", layout="wide", page_icon="🚢")
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 #--------------------LEEMOS LOS DATAFRAMES----------------------------#
-df = pd.read_csv(r"data/titanic.csv")
-if "Unnamed: 0" in df:
-    df = df.drop(columns = ['Unnamed: 0']) 
-else:
-    pass
+#df = pd.read_csv(r"data/titanic.csv")
+#if "Unnamed: 0" in df:
+#   df = df.drop(columns = ['Unnamed: 0']) 
+#lse:
+ #   pass
+    
+    df = df.drop(columns='Unnamed: 0', errors='ignore')
+
+
 df_limpio = pd.read_csv(r"data/titanic_limpio.csv")
 if "Unnamed: 0" in df_limpio:
     df_limpio = df_limpio.drop(columns = ['Unnamed: 0'])
 else:
     pass 
 #--------------------LOGO+CREACIÓN DE COLUMNA----------------------------#
+
+#added
+col1,col2 = st.beta_columns([1,6])
+with col2:
+    st.title("")
+
+#original-------------#
 st.image("img/baner.jpg",  use_column_width=True)
 col1,col2,col3 = st.columns(3)
 with col1:
@@ -228,6 +239,20 @@ if st.sidebar.button("Gráficos"):
     )
 
     st.plotly_chart(fig7, use_container_width=True)
+    
+    
+    #------------added------------------#
+    def create_pie_chart(data, value, name, title):
+    count = data[value].value_counts()
+    plot = px.pie(
+        values=count.values, 
+        names=count.index, 
+        title=title
+    )
+    st.plotly_chart(plot, use_container_width=True)
+
+create_pie_chart(df_limpio, "Sexo", "Distribución de Hombres y Mujeres en el Titanic")
+
     
 #--------------------CONCLUSIONES----------------------------#
 if st.sidebar.button("Conclusiones"):
